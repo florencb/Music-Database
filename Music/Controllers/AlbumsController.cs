@@ -21,6 +21,15 @@ namespace Music.Controllers
             return View(albums.ToList());
         }
 
+        public ActionResult ShowSomeAlbums(int id)
+        {
+            var albums = db.Albums
+                .Include(a => a.Artist)
+                .Include(a => a.Genre)
+                .Where(a => a.GenreID == id);
+            return View(albums.ToList());
+        }
+
         // GET: Albums/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,19 +37,26 @@ namespace Music.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
-            if (album == null)
+            try {
+                Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
+            
+                if (album == null)
             {
                 return HttpNotFound();
             }
             return View(album);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Albums/Create
         public ActionResult Create()
         {
             ViewBag.ArtistID = new SelectList(db.Artists, "ArtistID", "Name");
-            ViewBag.GenreID = new SelectList(db.Genres, "GenreID", "Name");
+            ViewBag.GenreID = new SelectList(db.Genres.OrderByDescending(g => g.Name), "GenreID", "Name");
             return View();
         }
 
