@@ -129,6 +129,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlbumsController.cs" />
+    <Compile Include="Controllers\ArtistsController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,6 +142,18 @@
     <Compile Include="Migrations\201603031845212_TitleRequired.cs" />
     <Compile Include="Migrations\201603031845212_TitleRequired.Designer.cs">
       <DependentUpon>201603031845212_TitleRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603111948500_geneM.cs" />
+    <Compile Include="Migrations\201603111948500_geneM.Designer.cs">
+      <DependentUpon>201603111948500_geneM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603211839092_genreReq.cs" />
+    <Compile Include="Migrations\201603211839092_genreReq.Designer.cs">
+      <DependentUpon>201603211839092_genreReq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603211902422_genre2.cs" />
+    <Compile Include="Migrations\201603211902422_genre2.Designer.cs">
+      <DependentUpon>201603211902422_genre2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -157,6 +171,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\musicdatabase2016.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -169,7 +184,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -188,6 +205,18 @@
     <Content Include="Views\Albums\Details.cshtml" />
     <Content Include="Views\Albums\Edit.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Artists\Create.cshtml" />
+    <Content Include="Views\Artists\Delete.cshtml" />
+    <Content Include="Views\Artists\Details.cshtml" />
+    <Content Include="Views\Artists\Edit.cshtml" />
+    <Content Include="Views\Artists\Index.cshtml" />
+    <Content Include="Views\Albums\BrowseByArtist.cshtml" />
+    <Content Include="Views\Albums\BrowseByGenre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -206,6 +235,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603031845212_TitleRequired.resx">
       <DependentUpon>201603031845212_TitleRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603111948500_geneM.resx">
+      <DependentUpon>201603111948500_geneM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603211839092_genreReq.resx">
+      <DependentUpon>201603211839092_genreReq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603211902422_genre2.resx">
+      <DependentUpon>201603211902422_genre2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

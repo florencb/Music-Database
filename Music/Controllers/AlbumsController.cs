@@ -132,5 +132,23 @@ namespace Music.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult BrowseByGenre(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.GenreID == id);
+            return View(albums);
+        }
+        public ActionResult BrowseByArtist(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.ArtistID == id);
+            return View(albums);
+        }
     }
 }
