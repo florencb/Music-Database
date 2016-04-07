@@ -155,6 +155,18 @@
     <Compile Include="Migrations\201603211902422_genre2.Designer.cs">
       <DependentUpon>201603211902422_genre2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603232017578_new.cs" />
+    <Compile Include="Migrations\201603232017578_new.Designer.cs">
+      <DependentUpon>201603232017578_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060011497_requiredartist.cs" />
+    <Compile Include="Migrations\201604060011497_requiredartist.Designer.cs">
+      <DependentUpon>201604060011497_requiredartist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060032068_likes.cs" />
+    <Compile Include="Migrations\201604060032068_likes.Designer.cs">
+      <DependentUpon>201604060032068_likes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -171,6 +183,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\musicdatabase16.pubxml" />
     <None Include="Properties\PublishProfiles\musicdatabase2016.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -244,6 +257,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603211902422_genre2.resx">
       <DependentUpon>201603211902422_genre2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603232017578_new.resx">
+      <DependentUpon>201603232017578_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060011497_requiredartist.resx">
+      <DependentUpon>201604060011497_requiredartist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060032068_likes.resx">
+      <DependentUpon>201604060032068_likes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

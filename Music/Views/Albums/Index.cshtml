@@ -9,43 +9,96 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Artist)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Artist.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
-        </td>*@
-    </tr>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Search" />@Html.TextBox("SearchString")<br />
+    </p>
 }
+<div>
+    @{
+    var grid = new WebGrid(Model, rowsPerPage: 6);
+    }
+    @grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
 
-</table>
+    columns: grid.Columns(
+           grid.Column("Title", "Title"),
+           grid.Column("Artist.Name", "Artist"),
+           grid.Column("Genre.Name", "Genres"),
+           grid.Column("Price", "Price"),
+           grid.Column("Likes", format: @<text>
+            @item.Likes
+            <a title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Likes", new { id = item.AlbumID })'">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+            </a>
+        </text>),
+           grid.Column(format: @<text>
+
+            <div class="btn-group btn-group-sm">
+
+                @*<a title="Add to playlist" class="btn btn-primary" onclick="location.href='@Url.Action("AddToPlaylist","Playlist", new { id = item.AlbumID })'">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                </a>*@
+                <a title="Edit" class="btn btn-warning" onclick="location.href='@Url.Action("Edit", new { id = item.AlbumID })'">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <a title="Details" class="btn btn-info" onclick="location.href='@Url.Action("Details", new { id = item.AlbumID })'">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                </a>
+                <a title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.AlbumID })'">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+
+            </div>
+
+        </text>)
+        )
+    )
+</div>
+    
+
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Artist)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
+                </td>
+    </tr>
+    }
+
+    </table>*@

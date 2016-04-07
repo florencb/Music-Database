@@ -15,9 +15,14 @@ namespace Music.Controllers
         private MusicContext db = new MusicContext();
 
         // GET: Albums
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                albums = albums.Where(s => s.Title.Contains(searchString) || s.Genre.Name.Contains(searchString) || s.Artist.Name.Contains(searchString));
+            }
+      
             return View(albums.ToList());
         }
 
@@ -165,6 +170,13 @@ namespace Music.Controllers
             }
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.ArtistID == id);
             return View(albums);
+        }
+        public ActionResult Likes(int? id)
+        {
+            Album album = db.Albums.Find(id);
+            album.Likes++;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
