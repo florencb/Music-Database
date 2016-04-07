@@ -44,7 +44,9 @@ namespace Music.Controllers
             }
             try {
                 Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
-            
+                var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.GenreID == album.GenreID || a.ArtistID == album.ArtistID).OrderByDescending(x => x.Likes).ToList();
+                albums = albums.Take(5).ToList();
+                ViewBag.Suggested = albums;
                 if (album == null)
             {
                 return HttpNotFound();

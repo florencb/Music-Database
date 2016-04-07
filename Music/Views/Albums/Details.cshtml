@@ -48,3 +48,10 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<h3>Your Suggestions:</h3>
+<ul>
+    @foreach (var al in ViewBag.Suggested)
+    {
+        <li>@al.Title</li>
+    }
+</ul>
